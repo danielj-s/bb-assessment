@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { NewsletterSignupCard } from './components/NewsletterSignupCard';
+
+//The data for each newsletter tile would come from an API in production (I hope!)
+//so there'd be a generic loading state for each card while we wait on that GET call.
+const newsletters = [
+  {
+    name: "The Scan",
+    description: "Get essential news and engaging features in your inbox curated by Banner staff.",
+    color: "#FFDC00",
+  },
+  {
+    name: "The Dish",
+    description: "Dive into what's going on in the food industry every Wednesday with food reporter Christina Tkacik.",
+    color: "#00C035",
+  }
+]
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Email Newsletters</h1>
+      <div className="tiles">
+        {newsletters.map(({ name, description, color }) =>
+          <NewsletterSignupCard
+            name={name}
+            key={name}
+            description={description}
+            color={color}
+            checked={false}
+            //This is probably too cute, would just pull the img src url from the newsletter data
+            image={`images/${name.toLowerCase().split(' ').join('-')}.png`} />)}
+      </div>
     </div>
   );
 }
