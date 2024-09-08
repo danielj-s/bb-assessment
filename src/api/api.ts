@@ -1,7 +1,6 @@
-const express = require('express')
-const cors = require('cors')
-const { Sequelize, Model, DataTypes } = require('sequelize')
-
+import express, { Request, Response} from 'express'
+import cors from 'cors'
+import { Sequelize, Model, DataTypes } from 'sequelize'
 const app = express();
 const PORT = 5001;
 
@@ -27,16 +26,17 @@ Subscriptions.init({
 
 sequelize.sync();
 
-app.get('/subscriptions', async (_, res) => {
+app.get('/subscriptions', async (_, res: Response ) => {
     const subscriptions = await Subscriptions.findOne()
     res.json(subscriptions)
 })
 
-app.post('/subscriptions/:newsletter', async (req, res) => {
+app.post('/subscriptions/:newsletter', async (req: Request, res: Response) => {
     const subscriptions = await Subscriptions.findOne()
+    const key = req.params.newsletter
     if (subscriptions !== null) {
         await subscriptions.update({
-            [req.params.newsletter]: !subscriptions[req.params.newsletter]
+            [key]: !subscriptions[key]
         })
         res.json(subscriptions)
     } else {

@@ -6,7 +6,7 @@ type NewsletterSignupCardProps = {
     description: string;
     color: string;
     image: string;
-    checked: boolean;
+    subscribed: boolean;
 };
 
 export const NewsletterSignupCard = ({
@@ -14,16 +14,17 @@ export const NewsletterSignupCard = ({
     description,
     color,
     image,
-    checked,
+    subscribed,
 }: NewsletterSignupCardProps) => {
-    const [isSubscribed, setIsSubscribed] = useState<boolean>(checked)
+    const [isSubscribed, setIsSubscribed] = useState<boolean>(subscribed)
 
-    const urlName = () => {
+    const urlName = (() => {
         const split: string[] = name.split(' ')
         return [split[0].toLowerCase(), split[1]].join('')
-    }
+    })()
 
-    const handleClick = () => fetch(`http://localhost:5001/subscriptions/${urlName()}`, { method: 'POST' }).then(res => res.json()).then(data => console.log(data))
+    const handleClick = () => fetch(`http://localhost:5001/subscriptions/${urlName}`, { method: 'POST' })
+        .then(res => res.json()).then(data => setIsSubscribed(data[urlName]))
 
     return <div className='card'>
         <div className='header' style={{ backgroundColor: color }}>
@@ -36,7 +37,7 @@ export const NewsletterSignupCard = ({
             {description}
         </p>
         <button onClick={handleClick} style={{ backgroundColor: color }}>
-            {checked ? "✓ Signed Up" : "Sign Up"}
+            {isSubscribed ? "✓ Signed Up" : "Sign Up"}
         </button>
     </div>
 }
