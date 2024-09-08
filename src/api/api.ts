@@ -17,7 +17,7 @@ const sequelize = new Sequelize({
   });
 
 //Again, in production DB setup would be its own silo, with migrations written in sql (or whatever);
-//also there'd be a user ID column to get the user's specific subscriptions, but for this max users is 1
+//also there'd be a user ID column to get the user's specific subscriptions, but for now max users is 1
 class Subscriptions extends Model {}
 Subscriptions.init({
     theDish: DataTypes.BOOLEAN,
@@ -36,10 +36,12 @@ app.post('/subscriptions/:newsletter', async (req: Request, res: Response) => {
     const key = req.params.newsletter
     if (subscriptions !== null) {
         await subscriptions.update({
-            [key]: !subscriptions[key]
+            [key]: !(subscriptions as any)[key]
         })
         res.json(subscriptions)
     } else {
+        //Would ideally create a row with default values for the user
+        //in its own controller or as part of an onboarding flow
         Subscriptions.create({[req.params.newsletter]: true})
         const createdSubscriptions = await Subscriptions.findOne()
         res.json(createdSubscriptions)
