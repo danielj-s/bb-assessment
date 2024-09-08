@@ -1,18 +1,30 @@
 @font-face {
-  font-family: "GT-America-Expanded-Black";
-  src: url("./assets/fonts/GT-America-Expanded-Black.woff2") format("woff2");
+  font-family: "GT-America-Extended-Black";
+  src: url("./assets/fonts/GT-America-Extended-Black.woff2") format("woff2");
 }
 
 .App {
   margin: 24px;
-  font-family: "GT-America-Expanded-Black";
+  font-family: "GT-America-Extended-Black";
 
   h1 {
     font-size: 20px;
+    margin-bottom: 36px;
   }
   .tiles {
+    /*looking at the designs grid might be a better choice here*/
     display: flex;
     flex-direction: row;
-    gap: 16px;
+    gap: 24px;
+  }
+
+  @media screen and (max-width: 480px) {
+    h1 {
+      text-align: center;
+    }
+    .tiles {
+      align-items: center;
+      flex-direction: column;
+    }
   }
 }
