@@ -1,9 +1,24 @@
+@font-face {
+    font-family: 'GT-America-Standard-Light';
+    src: url('../assets/fonts/GT-America-Standard-Light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'GT-America-Extended-Black';
+    src: url('../assets/fonts/GT-America-Extended-Black.woff2');
+}
+
 .card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     width: 244px;
     height: 254px;
+
+    border: 1px solid black;
+    box-shadow: 5px 5px black;
+
     text-align: center;
 
     .header {
@@ -15,18 +30,36 @@
         }
     }
 
-    h3 {
-        text-transform: uppercase;
-    }
-
-    p {
-        margin-top: 0;
+    .content {
+        width: 208px;
+        margin: auto;
+        h3 {
+            text-transform: uppercase;
+        }
+    
+        p {
+            margin-top: 0;
+            font-family: 'GT-America-Standard-Light';
+            font-size: 12px;
+        }
     }
 
     button {
-        border: none;
-        color: white;
+        width: 65%;
+        height: 31.5px;
+        margin: auto;
         text-transform: uppercase;
         cursor: pointer;
+        font-family: 'GT-America-Extended-Black';
+
+        .unsubscribed {
+            
+            color: black;
+        }
+
+        .subscribed {
+            
+            color: white;
+        }
     }
 }
