@@ -21,10 +21,13 @@ const newsletters = [
   },
 ];
 function App() {
-  const [subscriptions, setSubscriptions] = useState<Record<string, boolean> | null>(null);
+  const [subscriptions, setSubscriptions] = useState<Record<
+    string,
+    boolean
+  > | null>(null);
 
   useEffect(() => {
-    // In a production environment or anything that would want to scale, 
+    // In a production environment or anything that would want to scale,
     // the api calls would likely be defined outside of the components
     // and would probably leverage a library that handles caching/state management,
     // like Axios or something that plays nicely with Redux like RTKQuery

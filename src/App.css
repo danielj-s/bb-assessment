@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'GT-America-Expanded-Black';
-  src: url('./assets/fonts/GT-America-Expanded-Black.woff2') format('woff2');
+  font-family: "GT-America-Expanded-Black";
+  src: url("./assets/fonts/GT-America-Expanded-Black.woff2") format("woff2");
 }
 
 .App {
   margin: 24px;
-  font-family: 'GT-America-Expanded-Black';
+  font-family: "GT-America-Expanded-Black";
 
   h1 {
     font-size: 20px;
